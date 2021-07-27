@@ -1,5 +1,5 @@
 let mySelector = document.querySelector(".button");
-
+mySelector.style.backgroundColor = "green";
 console.log(mySelector);
 
 //alert("hello!");
