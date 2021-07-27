@@ -3,6 +3,7 @@
 //mySelector.style.backgroundColor = "green";
 //console.log(mySelector);
 
+//Ejercicio 4:
 document.querySelector("#new-todo").addEventListener("submit", (alertSomething));
 
 function alertSomething(evento) {
@@ -10,6 +11,15 @@ function alertSomething(evento) {
   let text = evento.target.elements.text.value.trim();
   console.log(text);
 }
+
+//Otra manera de hacer el ejercicio 4:
+//document.querySelector('#new-todo').addEventListener('submit', (e) => {
+//    e.preventDefault()
+//    const text = e.target.elements.text.value.trim()
+//    console.log(text)
+//})
+
+
 
 //Contenido del archivo inicial:
 //alert("hello!");
