@@ -1,3 +1,16 @@
+//Ejercicio 7:
+const renderTodos = todos => { //1. Crear función
+    const todoList = document.querySelector("todos"); //2
+    todoList.innerHTML = ''; //3. Eliminar todo dentro de todoList usando la propiedad: innerHTML
+
+    todos.forEach((todo) => {
+        todoList.appendChild(generateTodoDOM(todo))
+    })
+}
+renderTodos (todos);
+
+//---------------------------------------------------------------------------------------
+
 //Ejercicio 6:
 const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: todo.
     const todoEl = document.createElement('label'); //2. Se crean tres elementos que sólo estan en el JavaScript
@@ -16,27 +29,26 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
     return todoEl; //9. Retornar 
 }
 
-
 //---------------------------------------------------------------------------------------
 
 //.addEventListener Permite crear eventos
 //Ejercicio 5:
-//let todos = [ ];
-//function createTodo (text) {
-//.    todos.push(text);
-//}
+let todos = [ ];
+function createTodo (text) {
+    todos.push(text);
+}
 
-//document.querySelector('#new-todo').addEventListener('submit', (evento) => {
-//    evento.preventDefault()
-//    const text = evento.target.elements.text.value.trim()
+document.querySelector('#new-todo').addEventListener('submit', (evento) => {
+    evento.preventDefault()
+    const text = evento.target.elements.text.value.trim()
 
-//    if (text.length > 0) {
-//        createTodo(text)
-//        evento.target.elements.text.value = ''
-//    }
+    if (text.length > 0) {
+        createTodo(text)
+        evento.target.elements.text.value = ''
+       }
 
-//    console.log(todos)
-//})
+    console.log(todos)
+})
 
 //---------------------------------------------------------------------------------------
 
