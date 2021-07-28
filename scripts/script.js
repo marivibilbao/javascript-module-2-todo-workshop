@@ -17,9 +17,9 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
     const containerEl = document.createElement('div'); //3.
     const todoText = document.createElement('span'); //4.
     
-    todoText.textContent = todo; //5. 
+    todoText.textContent = todo; //5. Asignar el valor "todo" (parámetro) a "todoText" usando la propiedad ".textContent"
     
-    containerEl.appendChild(todoText); //6.
+    containerEl.appendChild(todoText); //6. Dentro del contenedor poniendo el elemento "todoText" / Contenedor que existe en el javaScript
     
     todoEl.classList.add('list-item__container'); //7.
     containerEl.classList.add('list-item__container'); //7.
