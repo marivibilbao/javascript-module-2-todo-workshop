@@ -3,17 +3,28 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
     const todoEl = document.createElement('label'); //2. Se crean tres elementos que sólo estan en el JavaScript
     const containerEl = document.createElement('div'); //3.
     const todoText = document.createElement('span'); //4.
-//Ejercicio 10
-    const removeBurron = 
+//Ejercicio 10 - Parte I
+    // Setup the remove button
+    const removeButton = document.createElement("button"); //Creamos variable
+    removeButton.textContent = "remove"; // Asignar valor del texto que queremos que tenga el botón
+    removeButton.classList.add("button--text"); //Agregamos una clase
 
+    // Setup the todo text
     todoText.textContent = todo; //5. Asignar el valor "todo" (parámetro) a "todoText" usando la propiedad ".textContent"
-    
     containerEl.appendChild(todoText); //6. Dentro del contenedor poniendo el elemento "todoText" / Contenedor que existe en el javaScript
     
+    // Setup container
     todoEl.classList.add("list-item"); //7.
     containerEl.classList.add("list-item__container"); //7.
-    
     todoEl.appendChild(containerEl); //8.
+
+//Ejercicio 10 - Parte II
+    // Setup the remove button
+    todoEl.appendChild(removeButton);
+    removeButton.addEventListener("click", ()=>{
+        removeTodo(todoText);
+        renderTodos(todos);
+    })
 
     return todoEl; //9. Retornar 
 }
