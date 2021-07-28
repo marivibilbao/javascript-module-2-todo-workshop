@@ -3,7 +3,9 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
     const todoEl = document.createElement('label'); //2. Se crean tres elementos que sólo estan en el JavaScript
     const containerEl = document.createElement('div'); //3.
     const todoText = document.createElement('span'); //4.
-    
+//Ejercicio 10
+    const removeBurron = 
+
     todoText.textContent = todo; //5. Asignar el valor "todo" (parámetro) a "todoText" usando la propiedad ".textContent"
     
     containerEl.appendChild(todoText); //6. Dentro del contenedor poniendo el elemento "todoText" / Contenedor que existe en el javaScript
@@ -35,6 +37,18 @@ const renderTodos = todos => { //1. Crear función
         messageEl.classList.add('empty-message'); //Ejercicio 8:
         messageEl.textContent = 'There are no todos to show'; //Ejercicio 8:
         todoList.appendChild(messageEl);
+    }
+}
+
+//---------------------------------------------------------------------------------------
+
+//Ejercicio 9:
+const removeTodo = todoEl => { //1. Crear una función
+    const todoIndex = todos.findIndex((todo)=>{
+        return todo.toLowerCase() === todoEl.textContent.toLowerCase()
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
     }
 }
 
