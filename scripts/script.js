@@ -1,16 +1,3 @@
-//Ejercicio 7:
-const renderTodos = todos => { //1. Crear función
-    const todoList = document.querySelector("todos"); //2
-    todoList.innerHTML = ''; //3. Eliminar todo dentro de todoList usando la propiedad: innerHTML
-
-    todos.forEach((todo) => {
-        todoList.appendChild(generateTodoDOM(todo))
-    })
-}
-renderTodos (todos);
-
-//---------------------------------------------------------------------------------------
-
 //Ejercicio 6:
 const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: todo.
     const todoEl = document.createElement('label'); //2. Se crean tres elementos que sólo estan en el JavaScript
@@ -21,12 +8,34 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
     
     containerEl.appendChild(todoText); //6. Dentro del contenedor poniendo el elemento "todoText" / Contenedor que existe en el javaScript
     
-    todoEl.classList.add('list-item__container'); //7.
-    containerEl.classList.add('list-item__container'); //7.
+    todoEl.classList.add("list-item"); //7.
+    containerEl.classList.add("list-item__container"); //7.
     
     todoEl.appendChild(containerEl); //8.
 
     return todoEl; //9. Retornar 
+}
+
+//---------------------------------------------------------------------------------------
+
+//Ejercicio 7 - Parte I:
+const renderTodos = todos => { //1. Crear función
+    const todoList = document.querySelector("#todos"); //2
+    todoList.innerHTML = ''; //3. Eliminar todo dentro de todoList usando la propiedad: innerHTML
+
+//Ejercicio 8:
+    if (todos.length >0) { // Verificar si el arreglo es mayor a 0, quiere decir que no esta vacío si tiene algo mayor a 0.
+    //Ejercicio 7 - Parte II:
+    todos.forEach((todo) => {
+        const newTodo = generateTodoDOM(todo);
+        todoList.appendChild(newTodo);
+    })
+    } else {
+        const messageEl = document.createElement("p");
+        messageEl.classList.add('empty-message'); //Ejercicio 8:
+        messageEl.textContent = 'There are no todos to show'; //Ejercicio 8:
+        todoList.appendChild(messageEl);
+    }
 }
 
 //---------------------------------------------------------------------------------------
@@ -47,8 +56,11 @@ document.querySelector('#new-todo').addEventListener('submit', (evento) => {
         evento.target.elements.text.value = ''
        }
 
-    console.log(todos)
+    renderTodos(todos);
 })
+
+//Ejercicio 8:
+renderTodos(todos);
 
 //---------------------------------------------------------------------------------------
 
