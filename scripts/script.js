@@ -1,8 +1,21 @@
 //Ejercicio 14:
-const filters = {
+const filters = { //Creamos objeto
     searchTitle: "",
     showFinished: false,
     showUnfinished: false,
+}
+
+// Ejercicio 15:
+const setFilters = (updates) => {  //1. Creamos una función con un parámetro
+    if (typeof updates.searchTitle === "string") {
+        filters.searchTitle = updates.searchTitle;
+    }
+    if (typeof updates.showFinished === "boolean") {
+        filters.showFinished = updates.showFinished;
+    }
+    if (typeof updates.showUnfinished === 'boolean') {
+        filters.showUnfinished = updates.showUnfinished;
+    }
 }
 
 //Ejercicio 12:
