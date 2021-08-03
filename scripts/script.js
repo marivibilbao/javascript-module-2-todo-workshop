@@ -1,3 +1,44 @@
+//Ejercicio 12:
+const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
+    const todoEl = document.createElement('label');
+    const containerEl = document.createElement('div');
+    const todoText = document.createElement('span');
+
+    // Setup todo checkbox
+    const checkbox = document.createElement('input'); //2. Creamos elemento "input"
+    checkbox.setAttribute('type', 'checkbox'); //3. 
+    checkbox.checked = todoObj.completed; //4. Para poner la propiedad que creamos anteriormente
+    containerEl.appendChild(checkbox);
+    checkbox.addEventListener('change', () => { //6. Cuando cambie se ejecutará lo siguiente:
+    //    toggleTodo(todoObj.title); //6. toggleTodo de momento no existe esta función, se creará luego.
+        renderTodos(todos); //6. Función de devolución de llamada para actualizar la vista en la pantalla
+    })
+
+    todoText.textContent = todoObj.title; //Modificamos a todoObj.title
+    containerEl.appendChild(todoText);
+
+    //Setup container
+    todoEl.classList.add("list-item"); //7.
+    containerEl.classList.add("list-item__container"); //7.
+    todoEl.appendChild(containerEl); //8.
+
+
+    // Setup the remove button
+    const removeButton = document.createElement("button"); 
+    removeButton.textContent = "remove"; 
+    removeButton.classList.add("button--text"); 
+    todoEl.appendChild(removeButton);
+    removeButton.addEventListener("click", ()=>{
+        removeTodo(todoObj.title); //10. Modificar removeTodo por todoObj.title
+        renderTodos(todos);
+    })
+
+    return todoEl; //9. Retornar 
+}
+
+//---------------------------------------------------------------------------------------
+
+/*
 //Ejercicio 6:
 const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: todo.
     const todoEl = document.createElement('label'); //2. Se crean tres elementos que sólo estan en el JavaScript
@@ -10,17 +51,17 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
     removeButton.classList.add("button--text"); //Agregamos una clase
 
     // Setup the todo text
-    todoText.textContent = todo; //5. Asignar el valor "todo" (parámetro) a "todoText" usando la propiedad ".textContent"
+//    todoText.textContent = todo; //5. Asignar el valor "todo" (parámetro) a "todoText" usando la propiedad ".textContent"
     containerEl.appendChild(todoText); //6. Dentro del contenedor poniendo el elemento "todoText" / Contenedor que existe en el javaScript
     
     // Setup container
-    todoEl.classList.add("list-item"); //7.
+//    todoEl.classList.add("list-item"); //7.
     containerEl.classList.add("list-item__container"); //7.
-    todoEl.appendChild(containerEl); //8.
+//    todoEl.appendChild(containerEl); //8.
 
 //Ejercicio 10 - Parte II
     // Setup the remove button
-    todoEl.appendChild(removeButton);
+//    todoEl.appendChild(removeButton);
     removeButton.addEventListener("click", ()=>{
         removeTodo(todoText);
         renderTodos(todos);
@@ -28,7 +69,7 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
 
     return todoEl; //9. Retornar 
 }
-
+*/
 //---------------------------------------------------------------------------------------
 
 //Ejercicio 7 - Parte I:
@@ -56,7 +97,7 @@ const renderTodos = todos => { //1. Crear función
 //Ejercicio 9:
 const removeTodo = todoEl => { //1. Crear una función
     const todoIndex = todos.findIndex((todo)=>{
-        return todo.toLowerCase() === todoEl.textContent.toLowerCase()
+        return todo.title.toLowerCase() === todoEl.toLowerCase(); //Modifique de todo a todo.title - Ejercicio 12
     })
     if (todoIndex > -1) {
         todos.splice(todoIndex, 1)
