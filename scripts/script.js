@@ -23,22 +23,48 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
     setFilters({
         searchTitle: e.target.value
     })
-    renderTodos(todos)
+    renderTodos(todos);
 })
 
 document.querySelector('#show-finished').addEventListener('change', (e) => {
     setFilters({
         showFinished: e.target.checked
     })
-    renderTodos(todos)
+    renderTodos(todos);
 })
 
 document.querySelector('#show-unfinished').addEventListener('change', (e) => {
     setFilters({
         showUnfinished: e.target.checked
     })
-    renderTodos(todos)
+    renderTodos(todos);
 })
+
+//Ejercicio 17:
+const renderTodos = (todos) => {
+    let filteredTodos = todos.filter((todo) => todo.title.toLowerCase().includes(filters.searchTitle.toLowerCase()))
+    if(filters.showFinished && filters.showUnfinished) {
+    } else if(filters.showFinished) {
+      filteredTodos = filteredTodos.filter((todo) => todo.completed)
+    } else if(filters.showUnfinished) {
+      filteredTodos = filteredTodos.filter((todo) => !todo.completed)
+    }
+    
+    const todoList = document.querySelector('#todos')
+    todoList.innerHTML = ''
+
+    if (filteredTodos.length > 0) {
+        filteredTodos.forEach((todo) => {
+            todoList.appendChild(generateTodoDOM(todo))
+        })
+    } else {
+        const messageEl = document.createElement('p')
+        messageEl.classList.add('empty-message')
+        messageEl.textContent = 'There are no todos to show'
+        todoList.appendChild(messageEl)
+    }
+}
+
 
 //Ejercicio 12:
 const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
@@ -123,26 +149,27 @@ const generateTodoDOM = (todo) => { //1. Crear función que toma un parámetro: 
 */
 //---------------------------------------------------------------------------------------
 
+/*
 //Ejercicio 7 - Parte I:
 const renderTodos = todos => { //1. Crear función
     const todoList = document.querySelector("#todos"); //2
-    todoList.innerHTML = ''; //3. Eliminar todo dentro de todoList usando la propiedad: innerHTML
+//    todoList.innerHTML = ''; //3. Eliminar todo dentro de todoList usando la propiedad: innerHTML
 
 //Ejercicio 8:
     if (todos.length >0) { // Verificar si el arreglo es mayor a 0, quiere decir que no esta vacío si tiene algo mayor a 0.
     //Ejercicio 7 - Parte II:
-    todos.forEach((todo) => {
+//    todos.forEach((todo) => {
         const newTodo = generateTodoDOM(todo);
-        todoList.appendChild(newTodo);
+//        todoList.appendChild(newTodo);
     })
     } else {
         const messageEl = document.createElement("p");
         messageEl.classList.add('empty-message'); //Ejercicio 8:
         messageEl.textContent = 'There are no todos to show'; //Ejercicio 8:
-        todoList.appendChild(messageEl);
+//        todoList.appendChild(messageEl);
     }
 }
-
+*/
 //---------------------------------------------------------------------------------------
 
 //Ejercicio 10
