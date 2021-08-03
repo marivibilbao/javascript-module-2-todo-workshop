@@ -10,7 +10,7 @@ const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
     checkbox.checked = todoObj.completed; //4. Para poner la propiedad que creamos anteriormente
     containerEl.appendChild(checkbox);
     checkbox.addEventListener('change', () => { //6. Cuando cambie se ejecutará lo siguiente:
-    //    toggleTodo(todoObj.title); //6. toggleTodo de momento no existe esta función, se creará luego.
+        toggleTodo(todoObj.title); //6. toggleTodo de momento no existe esta función, se creará luego.
         renderTodos(todos); //6. Función de devolución de llamada para actualizar la vista en la pantalla
     })
 
@@ -34,6 +34,15 @@ const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
     })
 
     return todoEl; //9. Retornar 
+}
+
+//---------------------------------------------------------------------------------------
+//Ejercicio 13:
+const toggleTodo = (title) => { //1. Creamos función toggleTodo
+    const todo = todos.find((todo) => todo.title.toLowerCase() === title.toLowerCase()); //2.
+    if (todo) {
+        todo.completed = !todo.completed;
+    }
 }
 
 //---------------------------------------------------------------------------------------
@@ -94,16 +103,27 @@ const renderTodos = todos => { //1. Crear función
 
 //---------------------------------------------------------------------------------------
 
+//Ejercicio 10
+const removeTodo = title => { //1. Cambiamos parámetro a title
+    const todoIndex = todos.findIndex((todo)=>{
+        return todo.title.toLowerCase() === title.toLowerCase(); //Modifique de todo a todo.title - Ejercicio 12
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1);
+    }
+}
+
+/*
 //Ejercicio 9:
 const removeTodo = todoEl => { //1. Crear una función
     const todoIndex = todos.findIndex((todo)=>{
         return todo.title.toLowerCase() === todoEl.toLowerCase(); //Modifique de todo a todo.title - Ejercicio 12
     })
     if (todoIndex > -1) {
-        todos.splice(todoIndex, 1)
+//        todos.splice(todoIndex, 1)
     }
 }
-
+*/
 //---------------------------------------------------------------------------------------
 
 /*
