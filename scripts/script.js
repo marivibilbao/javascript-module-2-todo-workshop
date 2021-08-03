@@ -18,6 +18,28 @@ const setFilters = (updates) => {  //1. Creamos una función con un parámetro
     }
 }
 
+//Ejercicio 16:
+document.querySelector('#search-text').addEventListener('input', (e) => {
+    setFilters({
+        searchTitle: e.target.value
+    })
+    renderTodos(todos)
+})
+
+document.querySelector('#show-finished').addEventListener('change', (e) => {
+    setFilters({
+        showFinished: e.target.checked
+    })
+    renderTodos(todos)
+})
+
+document.querySelector('#show-unfinished').addEventListener('change', (e) => {
+    setFilters({
+        showUnfinished: e.target.checked
+    })
+    renderTodos(todos)
+})
+
 //Ejercicio 12:
 const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
     const todoEl = document.createElement('label');
