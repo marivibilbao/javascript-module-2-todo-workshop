@@ -65,11 +65,29 @@ const removeTodo = todoEl => { //1. Crear una función
 
 //---------------------------------------------------------------------------------------
 
+/*
+Ejercicio 11:
+Modify createTodo function
+Create an Object with two properties:
+title which will contain text value
+And completed which is a boolean to represent status of todo item
+*/
+
+//---------------------------------------------------------------------------------------
+
 //.addEventListener Permite crear eventos
 //Ejercicio 5:
 let todos = [ ];
-function createTodo (text) {
-    todos.push(text);
+//function createTodo (text) { //Comento función creada en el ejercicio 5 ya que se modifica en el ejercicio 11
+//.    todos.push(text);
+//}
+
+//Ejercicio 11:
+const createTodo = (text) => { //Función createTodo modificada 
+    todos.push({
+        title: text, //Propiedad 1
+        completed: false, //Propiedad 2, falso porque no se va crear una tarea que ya está completada.
+    })
 }
 
 document.querySelector('#new-todo').addEventListener('submit', (evento) => {
