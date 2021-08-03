@@ -1,3 +1,10 @@
+//Ejercicio 14:
+const filters = {
+    searchTitle: "",
+    showFinished: false,
+    showUnfinished: false,
+}
+
 //Ejercicio 12:
 const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
     const todoEl = document.createElement('label');
