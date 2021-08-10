@@ -3,7 +3,7 @@ const filters = { //Creamos objeto
     searchTitle: "",
     showFinished: false,
     showUnfinished: false,
-}
+};
 
 // Ejercicio 15:
 const setFilters = (updates) => {  //1. Creamos una función con un parámetro
@@ -15,30 +15,30 @@ const setFilters = (updates) => {  //1. Creamos una función con un parámetro
     }
     if (typeof updates.showUnfinished === 'boolean') {
         filters.showUnfinished = updates.showUnfinished;
-    }
-}
+    };
+};
 
 //Ejercicio 16:
 document.querySelector('#search-text').addEventListener('input', (e) => {
     setFilters({
         searchTitle: e.target.value
-    })
+    });
     renderTodos(todos);
-})
+});
 
 document.querySelector('#show-finished').addEventListener('change', (e) => {
     setFilters({
         showFinished: e.target.checked
-    })
+    });
     renderTodos(todos);
-})
+});
 
 document.querySelector('#show-unfinished').addEventListener('change', (e) => {
     setFilters({
         showUnfinished: e.target.checked
-    })
+    });
     renderTodos(todos);
-})
+});
 
 //Ejercicio 17:
 const renderTodos = (todos) => {
@@ -56,14 +56,14 @@ const renderTodos = (todos) => {
     if (filteredTodos.length > 0) {
         filteredTodos.forEach((todo) => {
             todoList.appendChild(generateTodoDOM(todo))
-        })
+        });
     } else {
         const messageEl = document.createElement('p')
         messageEl.classList.add('empty-message')
         messageEl.textContent = 'There are no todos to show'
         todoList.appendChild(messageEl)
-    }
-}
+    };
+};
 
 
 //Ejercicio 12:
@@ -80,7 +80,7 @@ const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
     checkbox.addEventListener('change', () => { //6. Cuando cambie se ejecutará lo siguiente:
         toggleTodo(todoObj.title); //6. toggleTodo de momento no existe esta función, se creará luego.
         renderTodos(todos); //6. Función de devolución de llamada para actualizar la vista en la pantalla
-    })
+    });
 
     todoText.textContent = todoObj.title; //Modificamos a todoObj.title
     containerEl.appendChild(todoText);
@@ -99,19 +99,21 @@ const generateTodoDOM = (todoObj) => { //1. Creamos de nuevo la función
     removeButton.addEventListener("click", ()=>{
         removeTodo(todoObj.title); //10. Modificar removeTodo por todoObj.title
         renderTodos(todos);
-    })
+    });
 
     return todoEl; //9. Retornar 
-}
+};
 
 //---------------------------------------------------------------------------------------
 //Ejercicio 13:
-const toggleTodo = (title) => { //1. Creamos función toggleTodo
+const toggleTodo = (title) => { //1. Creamos función toggleTodo --> Encuentra una tarea específica y si existe le cambia el valor (true o false)
     const todo = todos.find((todo) => todo.title.toLowerCase() === title.toLowerCase()); //2.
     if (todo) {
         todo.completed = !todo.completed;
-    }
-}
+        //Ejercicio 20: Invocamos la función "saveTodosToLocalStorage"
+        saveTodosToLocalStorage();
+    };
+};
 
 //---------------------------------------------------------------------------------------
 
@@ -179,8 +181,10 @@ const removeTodo = title => { //1. Cambiamos parámetro a title
     })
     if (todoIndex > -1) {
         todos.splice(todoIndex, 1);
-    }
-}
+        //Ejercicio 20:
+        saveTodosToLocalStorage();
+    };
+};
 
 /*
 //Ejercicio 9:
@@ -213,12 +217,14 @@ let todos = [ ];
 //}
 
 //Ejercicio 11:
-const createTodo = (text) => { //Función createTodo modificada 
+const createTodo = (text) => { //Función createTodo modificada ---> Añadir tareas
     todos.push({
         title: text, //Propiedad 1
         completed: false, //Propiedad 2, falso porque no se va crear una tarea que ya está completada.
-    })
-}
+    });
+    //*Ejercicio 20: Invocamos la función "saveTodosToLocalStorage"
+    saveTodosToLocalStorage(); 
+};
 
 document.querySelector('#new-todo').addEventListener('submit', (evento) => {
     evento.preventDefault()
@@ -227,10 +233,10 @@ document.querySelector('#new-todo').addEventListener('submit', (evento) => {
     if (text.length > 0) {
         createTodo(text)
         evento.target.elements.text.value = ''
-       }
+       };
 
     renderTodos(todos);
-})
+});
 
 //Ejercicio 8:
 renderTodos(todos);
@@ -274,7 +280,7 @@ renderTodos(todos);
 //})
 
 //Ejercicio 18:
-function saveTodosToLocalStorage(){ //Creamos una función
+function saveTodosToLocalStorage(){ //Creamos una función que nos permite guardarla en la memoria
     localStorage.setItem('todos', JSON.stringify(todos)) //Guardar matriz "todos" en formato JSON
 };
 
