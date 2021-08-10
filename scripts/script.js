@@ -272,3 +272,8 @@ renderTodos(todos);
 //    const text = e.target.elements.text.value.trim();
 //    alert(text);
 //})
+
+//Ejercicio 18:
+function saveTodosToLocalStorage(){ //Creamos una función
+    localStorage.setItem('todos', JSON.stringify(todos)) //Guardar matriz "todos" en formato JSON
+};
