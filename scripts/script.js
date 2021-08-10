@@ -238,6 +238,9 @@ document.querySelector('#new-todo').addEventListener('submit', (evento) => {
     renderTodos(todos);
 });
 
+//Ejercicio 21:
+fetchTodosFromLocalStorage();
+
 //Ejercicio 8:
 renderTodos(todos);
 
@@ -293,3 +296,11 @@ function fetchTodosFromLocalStorage(){ //Creamos función
         todos = []; //Si no que siga siendo un arreglo vacio
     };
 };
+
+//Ejercicio 21:
+window.addEventListener("storage", e =>{
+    if (e.key === 'todos'){
+        fetchTodosFromLocalStorage();
+        renderTodos();
+    };
+});
