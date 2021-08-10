@@ -277,3 +277,13 @@ renderTodos(todos);
 function saveTodosToLocalStorage(){ //Creamos una función
     localStorage.setItem('todos', JSON.stringify(todos)) //Guardar matriz "todos" en formato JSON
 };
+
+//Ejercicio 19:
+function fetchTodosFromLocalStorage(){ //Creamos función
+    const todosJSON = localStorage.getItem('todos'); //Guardamos los datos en una variable
+    if (todosJSON) {
+        todos = JSON.parse(todosJSON); //Transforma los valores ingresados a formato javaScript
+    } else {
+        todos = []; //Si no que siga siendo un arreglo vacio
+    };
+};
